@@ -1,7 +1,7 @@
 // Importando as ferramentas 
 const express = require('express');
 const cors = require('cors');
-const sqlite3 = require('sqlite3-offline').verbose(); // 🔥 CORREÇÃO AQUI: Mudado para sqlite3-offline
+const sqlite3 = require('sqlite3').verbose(); // 🔥 CORREÇÃO AQUI: Mudado para sqlite3-offline
 const path = require('path');
 
 // Iniciando o servidor
