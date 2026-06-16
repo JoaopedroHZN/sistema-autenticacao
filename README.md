@@ -49,3 +49,34 @@ Se quiser rodar o ambiente de desenvolvimento na sua máquina:
 ```bash
 git clone [https://github.com/JoaopedroHZN/sistema-autenticacao.git](https://github.com/JoaopedroHZN/sistema-autenticacao.git)
 cd sistema-autenticacao
+
+2. Configurar e Iniciar o Backend
+O servidor backend gerencia as regras de negócio e cria o banco de dados automaticamente no primeiro início.
+
+Bash
+# Entrar no diretório do servidor
+cd Backend
+
+# Instalar todas as dependências necessárias (Express, Cors, SQLite3)
+npm install
+
+# Iniciar o servidor em ambiente de desenvolvimento
+npm start
+
+
+Assim que o comando npm start rodar com sucesso, o próprio Node criará o arquivo banco.db na raiz da pasta Backend e estruturará a tabela de usuários automaticamente. O servidor estará ouvindo em http://localhost:3000.
+
+3. Configurar e Iniciar o Frontend (React + Vite)
+Abra um novo terminal na pasta raiz do projeto (sistema-autenticacao) para levantar a interface do usuário:
+
+Bash
+# Entrar no diretório do cliente
+cd Frontend
+
+# Instalar as dependências da interface (Axios, React Hook Form)
+npm install
+
+# Iniciar o servidor de desenvolvimento do Vite
+npm run dev
+O cliente React estará rodando e pronto para o acesso em http://localhost:5173.
+
