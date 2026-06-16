@@ -4,16 +4,16 @@ import { AuthContext } from './contexts/AuthContext';
 
 function App() {
   const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
-  
+
   // Consumimos as novas variáveis globais de paginação que criamos no contexto
-  const { 
-    cadastrarUsuario, 
-    mensagemGlobal, 
-    erroGlobal, 
-    listaUsuarios, 
-    paginaAtual, 
-    totalPaginas, 
-    buscarUsuariosPaginados 
+  const {
+    cadastrarUsuario,
+    mensagemGlobal,
+    erroGlobal,
+    listaUsuarios,
+    paginaAtual,
+    totalPaginas,
+    buscarUsuariosPaginados
   } = useContext(AuthContext);
 
   const senhaAtual = watch("senha");
@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div style={{ maxWidth: '600px', margin: '30px auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      
+
       {/* SEÇÃO DO FORMULÁRIO (Igualzinha ao que você já validou) */}
       <div style={{ border: '1px solid #ccc', padding: '20px', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)', marginBottom: '40px' }}>
         <h2 style={{ textAlign: 'center', color: '#333' }}>📝 Cadastro de Sistema</h2>
@@ -68,7 +68,7 @@ function App() {
          ========================================== */}
       <div style={{ border: '1px solid #ccc', padding: '20px', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
         <h3 style={{ margin: '0 0 15px 0', color: '#333' }}>👥 Usuários Cadastrados (Limitação: 5 por página)</h3>
-        
+
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead>
             <tr style={{ backgroundColor: '#f2f2f2', borderBottom: '2px solid #ddd' }}>
@@ -82,22 +82,27 @@ function App() {
             {listaUsuarios.map((usuario) => (
               <tr key={usuario.id} style={{ borderBottom: '1px solid #ddd' }}>
                 <td style={{ padding: '10px' }}>{usuario.id}</td>
-                <td style={{ padding: '10px' }}>{usuario.id === 1 ? 'João Pedro' : usuario.nome}</td>
+
+                {/* 🔥 LINHA CORRIGIDA COM QUEBRA DE TEXTO AUTOMÁTICA */}
+                <td style={{
+                  padding: '10px',
+                  wordBreak: 'break-all',
+                  maxWidth: '220px',
+                  whiteSpace: 'normal'
+                }}>
+                  {usuario.id === 1 ? 'João Pedro' : usuario.nome}
+                </td>
+
                 <td style={{ padding: '10px' }}>{usuario.email}</td>
               </tr>
             ))}
-            {listaUsuarios.length === 0 && (
-              <tr>
-                <td colSpan="3" style={{ padding: '10px', textAlign: 'center', color: '#777' }}>Nenhum usuário cadastrado ainda.</td>
-              </tr>
-            )}
           </tbody>
         </table>
 
         {/* CONTROLES DOS BOTÕES DE PÁGINA */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '15px' }}>
           {/* Botão Anterior: Desativado se estivermos na página 1 */}
-          <button 
+          <button
             disabled={paginaAtual === 1}
             onClick={() => buscarUsuariosPaginados(paginaAtual - 1)}
             style={{ padding: '6px 12px', cursor: paginaAtual === 1 ? 'not-allowed' : 'pointer' }}
@@ -108,7 +113,7 @@ function App() {
           <span style={{ fontWeight: 'bold' }}>Página {paginaAtual} de {totalPaginas}</span>
 
           {/* Botão Próximo: Desativado se chegarmos na última página calculada pelo backend */}
-          <button 
+          <button
             disabled={paginaAtual === totalPaginas}
             onClick={() => buscarUsuariosPaginados(paginaAtual + 1)}
             style={{ padding: '6px 12px', cursor: paginaAtual === totalPaginas ? 'not-allowed' : 'pointer' }}
