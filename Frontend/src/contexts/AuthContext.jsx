@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
         try {
             setErroGlobal('');
             setMensagemGlobal('');
-            const resposta = await axios.post('https://sistema-autenticacao-f56l.onrender.com', dados);
+            const resposta = await axios.post('https://sistema-autenticacao-f56l.onrender.com/api/cadastro', dados);
             setMensagemGlobal(resposta.data.mensagem);
 
             // UPGRADE: Toda vez que um usuário novo for cadastrado com sucesso, 
@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
     async function buscarUsuariosPaginados(numeroPagina) {
         try {
             // Fazemos o GET passando os Query Params (?pagina=X&limite=5) para a nossa nova rota do Express
-            const resposta = await axios.get(`https://sistema-autenticacao-f56l.onrender.com`);
+            const resposta = await axios.get(`https://sistema-autenticacao-f56l.onrender.com/api/usuarios?pagina=${numeroPagina}&limite=5`);
 
             // Atualizamos os nossos estados com as informações fatiadas vindas do backend
             setListaUsuarios(resposta.data.usuarios);
