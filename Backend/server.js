@@ -9,7 +9,17 @@ const app = express();
 const PORTA = 3000;
 
 // (Middlewares)
-app.use(cors());
+// Configuração do CORS para aceitar requisições locais e do Frontend na nuvem
+app.use(cors({
+    origin: [
+        'http://localhost:5173', 
+        'https://sistema-autenticacao-eight-phi.vercel.app' // O link da sua Vercel!
+    ],
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type']
+}));
+
+
 app.use(express.json()); // O servidor vai entender dados no formato JSON
 
 // Configuracao do Banco de Dados SQLite
