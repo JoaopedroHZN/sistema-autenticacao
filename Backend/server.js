@@ -11,10 +11,7 @@ const PORTA = 3000;
 // (Middlewares)
 // Configuração do CORS para aceitar requisições locais e do Frontend na nuvem
 app.use(cors({
-    origin: [
-        'http://localhost:5173', 
-        'https://sistema-autenticacao-eight-phi.vercel.app' // O link da sua Vercel!
-    ],
+    origin: '*', 
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
 }));
